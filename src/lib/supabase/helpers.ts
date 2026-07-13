@@ -57,3 +57,15 @@ export async function fetchById<T>(
 export function logSupabaseError(context: string, error: PostgrestError | Error | unknown): void {
   console.error(`[Supabase][${context}]`, error)
 }
+
+// ─── Convenience Constructors ─────────────────────────────────────────────────
+
+/** Wrap a value in a successful Result. */
+export function success<T>(data: T): Result<T> {
+  return { data, error: null }
+}
+
+/** Wrap an error message in a failed Result. */
+export function failure<T = never>(message: string): Result<T> {
+  return { data: null, error: message }
+}

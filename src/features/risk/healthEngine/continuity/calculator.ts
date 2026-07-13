@@ -1,4 +1,4 @@
-import type { Patient, Village, FollowUpVisit, RiskResult, RiskLevel } from './types'
+import type { Village, FollowUpVisit, RiskResult, RiskLevel } from './types'
 import { WEIGHTS, RISK_LEVELS, SUGGESTED_ACTIONS } from './constants'
 import {
   calculateOverdueFactor,
@@ -15,7 +15,7 @@ import {
  * natural-language explanations making the AI transparent to healthcare workers.
  */
 export function calculateContinuityRisk(
-  patient: Patient,
+  _patient: unknown,
   village: Village,
   visits: FollowUpVisit[],
   today: Date = new Date()

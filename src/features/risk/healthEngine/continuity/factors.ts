@@ -1,4 +1,4 @@
-import type { FollowUpVisit, RiskExplanation } from './types'
+import type { FollowUpVisit } from './types'
 import { THRESHOLDS } from './constants'
 
 /**
