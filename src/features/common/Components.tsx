@@ -18,8 +18,7 @@ export function Card({ children, style }: { children: React.ReactNode; style?: R
   )
 }
 
-// ── Stat Card ────────────────────────────────────────────────────────────────
-
+// ── Stat Card (Legacy) ────────────────────────────────────────────────────────
 export function StatCard({
   label, value, icon, color, sub,
 }: {
@@ -216,5 +215,92 @@ export function SearchInput({ value, onChange, placeholder }: { value: string; o
         }}
       />
     </div>
+  )
+}
+
+// ── Error State ──────────────────────────────────────────────────────────────
+
+export function ErrorState({ title, message, onRetry }: { title?: string; message: string; onRetry?: () => void }) {
+  return (
+    <div style={{ textAlign: 'center', padding: '32px 20px', background: 'var(--color-error-bg)', borderRadius: 12, border: '1px solid var(--color-error-border)' }}>
+      <div style={{ fontSize: 32, marginBottom: 12 }}>⚠️</div>
+      <h3 style={{ fontSize: 16, fontWeight: 700, color: 'var(--color-error-dark)', marginBottom: 6 }}>{title ?? 'Something went wrong'}</h3>
+      <p style={{ fontSize: 14, color: 'var(--color-error)', marginBottom: 16 }}>{message}</p>
+      {onRetry && (
+        <Button variant="danger" size="sm" onClick={onRetry}>Try Again</Button>
+      )}
+    </div>
+  )
+}
+
+// ── Skeleton Loader ──────────────────────────────────────────────────────────
+
+export function SkeletonLoader({ rows = 3, height = 20 }: { rows?: number; height?: number | string }) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12, width: '100%' }}>
+      {Array.from({ length: rows }).map((_, i) => (
+        <div key={i} style={{
+          height, borderRadius: 6, background: 'var(--color-gray-100)', width: i === rows - 1 ? '70%' : '100%',
+          animation: 'pulse 1.5s infinite ease-in-out'
+        }} />
+      ))}
+      <style>{`@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }`}</style>
+    </div>
+  )
+}
+
+// ── Section Card ─────────────────────────────────────────────────────────────
+
+export function SectionCard({ title, sub, children, action }: { title: string; sub?: string; children: React.ReactNode; action?: React.ReactNode }) {
+  return (
+    <Card>
+      <div style={{ padding: '18px 24px', borderBottom: '1px solid var(--color-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+        <div>
+          <h2 style={{ fontSize: 16, fontWeight: 700, color: 'var(--color-earth)' }}>{title}</h2>
+          {sub && <p style={{ fontSize: 13, color: 'var(--color-text-muted)', marginTop: 2 }}>{sub}</p>}
+        </div>
+        {action}
+      </div>
+      <div style={{ padding: '0' }}>
+        {children}
+      </div>
+    </Card>
+  )
+}
+
+// ── Dashboard Card ───────────────────────────────────────────────────────────
+
+export function DashboardCard({
+  title, count, icon, color, trendDir, trendLabel
+}: {
+  title: string; count: string | number; icon: string; color: string; trendDir?: 'up' | 'down' | 'neutral'; trendLabel?: string
+}) {
+  return (
+    <Card style={{ padding: '24px', position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+        <div>
+          <p style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+            {title}
+          </p>
+          <div style={{ fontSize: 36, fontWeight: 800, color: 'var(--color-earth)', marginTop: 8, lineHeight: 1 }}>
+            {count}
+          </div>
+        </div>
+        <div style={{
+          width: 48, height: 48, borderRadius: 12, background: `${color}18`, color: color,
+          display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24,
+        }}>
+          {icon}
+        </div>
+      </div>
+      {(trendDir || trendLabel) && (
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 16, fontSize: 13, fontWeight: 500 }}>
+          {trendDir === 'up' && <span style={{ color: 'var(--color-error)' }}>↑</span>}
+          {trendDir === 'down' && <span style={{ color: 'var(--color-success)' }}>↓</span>}
+          <span style={{ color: 'var(--color-text-muted)' }}>{trendLabel}</span>
+        </div>
+      )}
+      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 4, background: color }} />
+    </Card>
   )
 }
