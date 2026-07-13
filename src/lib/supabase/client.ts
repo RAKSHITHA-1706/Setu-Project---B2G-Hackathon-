@@ -1,5 +1,20 @@
 import { createClient } from '@supabase/supabase-js'
-import { env } from '@/config/env'
+
+/**
+ * Safely read environment variables.
+ * We fall back to empty strings to prevent hard crashes if env vars are missing,
+ * but we log a clear warning to the console.
+ */
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || ''
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || ''
+
+if (!supabaseUrl || !supabaseAnonKey) {
+  console.warn(
+    '⚠️ [Setu] Supabase environment variables are missing! ' +
+    'Please ensure VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY are set in your .env.local file. ' +
+    'The application may not function correctly until these are provided.'
+  )
+}
 
 /**
  * Supabase singleton client.
@@ -11,10 +26,14 @@ import { env } from '@/config/env'
  * import { supabase } from '@/lib/supabase/client'
  * const { data, error } = await supabase.from('patients').select('*')
  */
-export const supabase = createClient(env.VITE_SUPABASE_URL, env.VITE_SUPABASE_ANON_KEY, {
-  auth: {
-    persistSession: true,
-    autoRefreshToken: true,
-    detectSessionInUrl: true,
-  },
-})
+export const supabase = createClient(
+  supabaseUrl || 'https://placeholder-project.supabase.co', // Prevent crash on init if missing
+  supabaseAnonKey || 'placeholder-anon-key',
+  {
+    auth: {
+      persistSession: true,
+      autoRefreshToken: true,
+      detectSessionInUrl: true,
+    },
+  }
+)
