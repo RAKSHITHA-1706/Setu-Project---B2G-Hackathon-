@@ -1,0 +1,294 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════════
+   SETU DESIGN SYSTEM — Global CSS Variables
+   "Screening finds them. Setu keeps them."
+═══════════════════════════════════════════════════════════ */
+
+:root {
+  /* ─── Brand Palette ──────────────────────────────────────── */
+
+  /* Forest Green — Primary brand color. Trust, growth, community. */
+  --color-forest:        #2D5016;
+  --color-forest-light:  #3D6B20;
+  --color-forest-dark:   #1E3610;
+  --color-forest-50:     #EDF3E6;
+  --color-forest-100:    #D0E2BA;
+
+  /* Olive — Secondary. Earthy, grounded, warm authority. */
+  --color-olive:         #6B7C3A;
+  --color-olive-light:   #8A9E52;
+  --color-olive-muted:   #C4CC9A;
+  --color-olive-50:      #F0F3E6;
+
+  /* Sand — Background tones. Warmth, natural, accessible. */
+  --color-sand:          #E8DCC8;
+  --color-sand-light:    #F5F0E8;
+  --color-sand-dark:     #D4C5A9;
+  --color-sand-50:       #FAF8F4;
+
+  /* Clay — Accent & CTAs. Warmth, action, humanity. */
+  --color-clay:          #A0522D;
+  --color-clay-light:    #C46D3E;
+  --color-clay-dark:     #7A3D1F;
+  --color-clay-50:       #FAF0EB;
+
+  /* Earth Brown — Headings, high-contrast text. */
+  --color-earth:         #5C3D2E;
+  --color-earth-muted:   #8B6558;
+  --color-earth-dark:    #3A2218;
+
+  /* ─── Neutral Gray Scale (warm-tinted) ───────────────────── */
+  --color-gray-50:       #F9F8F6;
+  --color-gray-100:      #F0EDE8;
+  --color-gray-200:      #E2DDD6;
+  --color-gray-300:      #C8C0B5;
+  --color-gray-400:      #A69D92;
+  --color-gray-500:      #7D7368;
+  --color-gray-600:      #5A5249;
+  --color-gray-700:      #3D3730;
+  --color-gray-800:      #2A2420;
+  --color-gray-900:      #1A1614;
+
+  /* ─── Semantic Surfaces ──────────────────────────────────── */
+  --color-bg-app:        var(--color-sand-50);
+  --color-bg-card:       #FFFFFF;
+  --color-bg-sidebar:    var(--color-forest-dark);
+  --color-border:        var(--color-gray-200);
+  --color-border-strong: var(--color-gray-300);
+
+  /* ─── Typography Colors ──────────────────────────────────── */
+  --color-text-primary:  var(--color-earth);
+  --color-text-secondary:var(--color-earth-muted);
+  --color-text-inverse:  #FFFFFF;
+  --color-text-muted:    var(--color-gray-500);
+  --color-text-link:     var(--color-forest);
+
+  /* ─── Status Colors ──────────────────────────────────────── */
+  --color-success:       #3A7D44;
+  --color-success-light: #5A9D64;
+  --color-success-bg:    #EAF4EC;
+  --color-success-border:#B5DAB9;
+
+  --color-warning:       #C68B2F;
+  --color-warning-light: #DBA34A;
+  --color-warning-bg:    #FDF3E3;
+  --color-warning-border:#EDD09A;
+
+  --color-error:         #B53D3D;
+  --color-error-light:   #C85A5A;
+  --color-error-bg:      #FAE8E8;
+  --color-error-border:  #E5B3B3;
+
+  --color-info:          #2D6A8F;
+  --color-info-light:    #4A87AC;
+  --color-info-bg:       #E5F0F7;
+  --color-info-border:   #A8CCDF;
+
+  /* ─── Risk Tier Colors ───────────────────────────────────── */
+  /* LOW — Patient is stable, continuing care */
+  --color-risk-low:         #3A7D44;
+  --color-risk-low-bg:      #EAF4EC;
+  --color-risk-low-border:  #B5DAB9;
+
+  /* MEDIUM — Monitor more frequently */
+  --color-risk-medium:         #C68B2F;
+  --color-risk-medium-bg:      #FDF3E3;
+  --color-risk-medium-border:  #EDD09A;
+
+  /* HIGH — Intervene within 2 weeks */
+  --color-risk-high:         #B53D3D;
+  --color-risk-high-bg:      #FAE8E8;
+  --color-risk-high-border:  #E5B3B3;
+
+  /* CRITICAL — Immediate outreach required */
+  --color-risk-critical:         #7B1D1D;
+  --color-risk-critical-bg:      #F5D5D5;
+  --color-risk-critical-border:  #D4A0A0;
+
+  /* ─── Typography ─────────────────────────────────────────── */
+  --font-sans: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  --text-xs:   0.75rem;   /* 12px — captions, labels */
+  --text-sm:   0.875rem;  /* 14px — secondary text */
+  --text-base: 1rem;      /* 16px — body */
+  --text-lg:   1.125rem;  /* 18px — subheadings */
+  --text-xl:   1.25rem;   /* 20px */
+  --text-2xl:  1.5rem;    /* 24px — section titles */
+  --text-3xl:  1.875rem;  /* 30px — page titles */
+  --text-4xl:  2.25rem;   /* 36px — hero */
+
+  /* ─── Spacing (4px base) ─────────────────────────────────── */
+  --space-1:  0.25rem;   /* 4px */
+  --space-2:  0.5rem;    /* 8px */
+  --space-3:  0.75rem;   /* 12px */
+  --space-4:  1rem;      /* 16px */
+  --space-5:  1.25rem;   /* 20px */
+  --space-6:  1.5rem;    /* 24px */
+  --space-8:  2rem;      /* 32px */
+  --space-10: 2.5rem;    /* 40px */
+  --space-12: 3rem;      /* 48px */
+  --space-16: 4rem;      /* 64px */
+  --space-20: 5rem;      /* 80px */
+
+  /* ─── Border Radius ──────────────────────────────────────── */
+  --radius-sm:   0.25rem;   /* 4px  — badges, tags */
+  --radius-md:   0.5rem;    /* 8px  — inputs, buttons */
+  --radius-lg:   0.75rem;   /* 12px — cards */
+  --radius-xl:   1rem;      /* 16px — modals */
+  --radius-2xl:  1.5rem;    /* 24px — drawers, panels */
+  --radius-full: 9999px;    /* pills */
+
+  /* ─── Shadows ─────────────────────────────────────────────── */
+  --shadow-xs:   0 1px 2px rgba(28, 22, 14, 0.05);
+  --shadow-sm:   0 1px 3px rgba(28, 22, 14, 0.08), 0 1px 2px rgba(28, 22, 14, 0.04);
+  --shadow-md:   0 4px 12px rgba(28, 22, 14, 0.10), 0 2px 4px rgba(28, 22, 14, 0.06);
+  --shadow-lg:   0 10px 28px rgba(28, 22, 14, 0.12), 0 4px 8px rgba(28, 22, 14, 0.08);
+  --shadow-xl:   0 20px 50px rgba(28, 22, 14, 0.15), 0 8px 16px rgba(28, 22, 14, 0.10);
+  --shadow-card: 0 2px 8px rgba(28, 22, 14, 0.08);
+  --shadow-card-hover: 0 4px 16px rgba(28, 22, 14, 0.12);
+  --shadow-modal:0 20px 60px rgba(28, 22, 14, 0.20), 0 8px 20px rgba(28, 22, 14, 0.12);
+
+  /* ─── Transitions ─────────────────────────────────────────── */
+  --transition-fast:   150ms ease;
+  --transition-base:   250ms ease;
+  --transition-slow:   400ms ease;
+  --transition-spring: 350ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ─── Z-Index Scale ───────────────────────────────────────── */
+  --z-dropdown:  100;
+  --z-sticky:    200;
+  --z-overlay:   300;
+  --z-modal:     400;
+  --z-toast:     500;
+  --z-tooltip:   600;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   BASE RESETS & DEFAULTS
+═══════════════════════════════════════════════════════════ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-app);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TYPOGRAPHY SCALE
+═══════════════════════════════════════════════════════════ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  color: var(--color-earth);
+  line-height: 1.3;
+}
+
+h1 { font-size: var(--text-4xl); font-weight: 700; }
+h2 { font-size: var(--text-3xl); }
+h3 { font-size: var(--text-2xl); }
+h4 { font-size: var(--text-xl); }
+h5 { font-size: var(--text-lg); }
+h6 { font-size: var(--text-base); }
+
+p {
+  color: var(--color-text-primary);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--color-text-link);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-forest-light);
+}
+
+code, kbd, pre {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FOCUS STYLES (Accessibility)
+═══════════════════════════════════════════════════════════ */
+
+:focus-visible {
+  outline: 2px solid var(--color-forest);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SCROLLBAR STYLING
+═══════════════════════════════════════════════════════════ */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-gray-100);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gray-300);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gray-400);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SELECTION
+═══════════════════════════════════════════════════════════ */
+
+::selection {
+  background-color: var(--color-forest-100);
+  color: var(--color-earth-dark);
+}
